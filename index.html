@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Video Profesional</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Editor de Video</h1>
+        </header>
+
+        <div class="main-container">
+            <!-- Panel de Control Principal -->
+            <aside class="control-panel">
+                <div class="control-section">
+                    <h2>Archivos</h2>
+                    <div class="upload-controls">
+                        <div class="upload-group">
+                            <label for="upload">Subir Imagen/Video:</label>
+                            <input id="upload" type="file" accept="image/*, video/*">
+                        </div>
+                        <div class="upload-group">
+                            <label for="audio">Agregar Audio:</label>
+                            <input id="audio" type="file" accept="audio/*">
+                            <button id="add-audio" class="btn btn-primary">Agregar Audio</button>
+                        </div>
+                    </div>
+                    <button id="save-project" class="btn btn-success">Guardar Proyecto</button>
+                </div>
+            </aside>
+
+            <!-- Área Principal de Edición -->
+            <main class="editor-workspace">
+                <div class="preview-section">
+                    <div id="preview-container">
+                        <canvas id="preview-canvas"></canvas>
+                    </div>
+                    
+                    <div class="playback-controls">
+                        <button id="playPauseBtn" class="btn btn-control">⏵</button>
+                        <button id="stopBtn" class="btn btn-control">⏹</button>
+                        <div id="progress-bar">
+                            <div id="progress"></div>
+                        </div>
+                        <div id="time-display">0:00</div>
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <div id="timeline" class="timeline-container"></div>
+                </div>
+            </main>
+
+            <!-- Panel de Herramientas -->
+            <aside class="tools-panel">
+                <div class="tool-section">
+                    <h3>Duración</h3>
+                    <div class="input-group">
+                        <label for="image-duration">Duración de imagen (segundos):</label>
+                        <input type="number" id="image-duration" min="1" value="3" step="0.5">
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h3>Audio</h3>
+                    <div class="audio-controls">
+                        <div class="input-group">
+                            <label for="audio-start">Inicio (segundos):</label>
+                            <input type="number" id="audio-start" min="0" value="0" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label for="audio-end">Fin (segundos):</label>
+                            <input type="number" id="audio-end" min="0" value="0" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label for="audio-volume">Volumen:</label>
+                            <input type="range" id="audio-volume" min="0" max="1" value="1" step="0.1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h3>Herramientas</h3>
+                    <div class="button-group">
+                        <button id="trim-btn" class="btn btn-tool">Recortar</button>
+                        <button id="rotate-btn" class="btn btn-tool">Rotar</button>
+                        <button id="text-btn" class="btn btn-tool">Añadir Texto</button>
+                    </div>
+                </div>
+
+                <div class="tool-section" id="text-controls" style="display: none;">
+                    <h3>Editar Texto</h3>
+                    <div class="input-group">
+                        <input type="text" id="clip-text" placeholder="Ingrese texto...">
+                        <input type="color" id="text-color" value="#ffffff">
+                        <input type="number" id="text-size" min="12" max="72" value="24" step="2">
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.0/dist/ffmpeg.min.js"></script>
+    <script src="funcionesvideo.js" type="module"></script>
+</body>
+</html>
